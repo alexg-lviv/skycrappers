@@ -1,3 +1,8 @@
+'''
+a module to analize skycrappers game board
+https://github.com/alexg-lviv/skycrappers
+'''
+
 def read_input(path: str):
     """
     Read game board file from path.
@@ -163,9 +168,14 @@ def check_skyscrapers(input_path: str):
     >>> check_skyscrapers("check.txt")
     True
     """
-    pass
+    board = read_input(input_path)
+    if check_not_finished_board(board) == False:
+        return False
+    if check_columns(board) and check_uniqueness_in_rows(board) and check_columns(board):
+        return True
+    return False
 
 
 if __name__ == "__main__":
-    print(check_columns(['***21**', '412453*', '423145*', '*543215', '*35214*', '*41232*', '*2*1***']))
+    print(check_skyscrapers("check.txt"))
 
