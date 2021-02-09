@@ -1,8 +1,3 @@
-'''
-a module to analize skycrappers game board
-https://github.com/alexg-lviv/skycrappers
-'''
-
 def read_input(path: str):
     """
     Read game board file from path.
@@ -12,7 +7,7 @@ def read_input(path: str):
     ['***21**', '452453*', '423145*', '*543215', '*35214*', '*41532*', '*2*1***']
     """
     result = []
-    file1 = open(path, "r")
+    file = open(path, "r")
     while True:
         line = file1.readline()
         if not line:
@@ -35,18 +30,7 @@ def left_to_right_check(input_line: str, pivot: int):
     >>> left_to_right_check("452453*", 5)
     False
     """
-    maxx = 0
-    for i in range(len(input_line)):
-        if i >= pivot: 
-            break
-        if maxx < int(input_line[i]):
-            maxx = int(input_line[i])
-
-    if int(input_line[pivot]) > maxx:
-        return True
-    else:
-        return False
-
+    pass
 
 
 def check_not_finished_board(board: list):
@@ -62,11 +46,7 @@ def check_not_finished_board(board: list):
     >>> check_not_finished_board(['***21**', '412453*', '423145*', '*5?3215', '*35214*', '*41532*', '*2*1***'])
     False
     """
-    for i in range(len(board)):
-        for j in range(len(board[i])):
-            if board[i][j] == "?":
-                return False
-    return True
+    pas
 
 
 def check_uniqueness_in_rows(board: list):
@@ -82,13 +62,8 @@ def check_uniqueness_in_rows(board: list):
     >>> check_uniqueness_in_rows(['***21**', '412453*', '423145*', '*553215', '*35214*', '*41532*', '*2*1***'])
     False
     """
-    i = 1
-    while i in range(len(board)-2):
-        for j in range(len(board[i])):
-            if board[i][1:-1].count(board[i][j]) > 1:
-                return False
-        i += 1
-    return True
+    pass
+
 
 def check_horizontal_visibility(board: list):
     """
@@ -105,31 +80,7 @@ def check_horizontal_visibility(board: list):
     >>> check_horizontal_visibility(['***21**', '452413*', '423145*', '*543215', '*35214*', '*41532*', '*2*1***'])
     False
     """
-    for i in range(len(board)):
-        count = 0
-        row = board[i][1:-1]
-        if board[i][0] != "*":    
-            maxx = 0
-            for j in range(len(row)):
-                if int(row[j]) > maxx:
-                    maxx = int(row[j])
-                    count += 1
-            if count < int(board[i][0]):
-                return False
-        count = 0
-        if board[i][-1] != "*":    
-            maxx = 0
-            j = len(board[i][1:-1])-1
-            while j >= 0:
-                if int(row[j]) > maxx:
-                    maxx = int(row[j])
-                    count += 1
-                j -= 1
-            if count < int(board[i][-1]):
-                return False
-    return True
-
-
+    pass
 
 
 def check_columns(board: list):
@@ -145,18 +96,7 @@ def check_columns(board: list):
     >>> check_columns(['***21**', '412553*', '423145*', '*543215', '*35214*', '*41532*', '*2*1***'])
     False
     """
-    half_result = ('')
-    result = []
-    for i in range(len(board)):
-        half_result = ('')
-        for j in range(len(board)):
-            half_result += board[j][i]
-        result.append(half_result)
-    if check_horizontal_visibility(result) == False:
-        return False
-    if check_uniqueness_in_rows(result) == False:
-        return False
-    return True
+    pass
 
 
 def check_skyscrapers(input_path: str):
@@ -168,14 +108,8 @@ def check_skyscrapers(input_path: str):
     >>> check_skyscrapers("check.txt")
     True
     """
-    board = read_input(input_path)
-    if check_not_finished_board(board) == False:
-        return False
-    if check_columns(board) and check_uniqueness_in_rows(board) and check_columns(board):
-        return True
-    return False
+    pass
 
 
 if __name__ == "__main__":
-    print(check_skyscrapers("check.txt"))
-
+    print(read_input('input.txt'))
