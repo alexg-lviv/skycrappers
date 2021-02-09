@@ -30,14 +30,14 @@ def left_to_right_check(input_line: str, pivot: int):
     >>> left_to_right_check("452453*", 5)
     False
     """
-    max = 0
+    maxx = 0
     for i in range(len(input_line)):
         if i >= pivot: 
             break
-        if max < int(input_line[i]):
-            max = int(input_line[i])
+        if maxx < int(input_line[i]):
+            maxx = int(input_line[i])
 
-    if int(input_line[pivot]) > max:
+    if int(input_line[pivot]) > maxx:
         return True
     else:
         return False
@@ -100,7 +100,31 @@ def check_horizontal_visibility(board: list):
     >>> check_horizontal_visibility(['***21**', '452413*', '423145*', '*543215', '*35214*', '*41532*', '*2*1***'])
     False
     """
-    pass
+    for i in range(len(board)):
+        count = 0
+        row = board[i][1:-1]
+        if board[i][0] != "*":    
+            maxx = 0
+            for j in range(len(row)):
+                if int(row[j]) > maxx:
+                    maxx = int(row[j])
+                    count += 1
+            if count < int(board[i][0]):
+                return False
+        count = 0
+        if board[i][-1] != "*":    
+            maxx = 0
+            j = len(board[i][1:-1])-1
+            while j >= 0:
+                if int(row[j]) > maxx:
+                    maxx = int(row[j])
+                    count += 1
+                j -= 1
+            if count < int(board[i][-1]):
+                return False
+    return True
+
+
 
 
 def check_columns(board: list):
@@ -132,4 +156,4 @@ def check_skyscrapers(input_path: str):
 
 
 if __name__ == "__main__":
-    print(check_uniqueness_in_rows(['***21**', '452453*', '423145*', '*543215', '*35214*', '*41532*', '*2*1***']))
+    print(check_horizontal_visibility(['***21**', '452413*', '423145*', '*543215', '*35214*', '*41532*', '*2*1***']))
