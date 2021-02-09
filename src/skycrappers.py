@@ -77,8 +77,13 @@ def check_uniqueness_in_rows(board: list):
     >>> check_uniqueness_in_rows(['***21**', '412453*', '423145*', '*553215', '*35214*', '*41532*', '*2*1***'])
     False
     """
-    pass
-
+    i = 1
+    while i in range(len(board)-1):
+        for j in range(len(board[i])):
+            if board[i][1:-1].count(board[i][j]) > 1:
+                return False
+        i += 1
+    return True
 
 def check_horizontal_visibility(board: list):
     """
@@ -127,4 +132,4 @@ def check_skyscrapers(input_path: str):
 
 
 if __name__ == "__main__":
-    print(check_not_finished_board(['***21**', '412453*', '423145*', '*543215', '*35214*', '*41532*', '*2*1***']))
+    print(check_uniqueness_in_rows(['***21**', '452453*', '423145*', '*543215', '*35214*', '*41532*', '*2*1***']))
